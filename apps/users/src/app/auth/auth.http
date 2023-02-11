@@ -1,0 +1,99 @@
+# Create a new user
+
+POST http://localhost:3333/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "subscriber__15@mail.ru",
+  "birthDate": "2022-11-03",
+  "firstname": "Petr",
+  "lastname": "Sidorov",
+  "password": "123456",
+  "isSubscribed": true,
+  "avatar": "avatar.jpg"
+
+}
+
+###
+
+# Create a new user without  subsription for news
+
+POST http://localhost:3333/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "subscriber15@mail.ru",
+  "birthDate": "2022-11-03",
+  "firstname": "Petr",
+  "lastname": "Sidorov",
+  "password": "123456",
+  "isSubscribed": false
+}
+###
+
+# Get user (user details) by ID
+
+GET http://localhost:3333/api/auth/63cbce61917ffba16413e6bc HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMTY2NjEsImV4cCI6MTY3NDMxNzI2MX0.1K406XmcaEAEg-xcyjBfIyK_whNkOL4n40llGX-V-MQ
+
+###
+# Get  unexisting user by Id
+
+GET http://localhost:3333/api/auth/63b1d523587659cd05886c11 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMDExMTcsImV4cCI6MTY3NDMwMTcxN30.vyC7XNr5BMlgJr2tUeaFlNTQ0fTlGmuvN4rO8ZqUnBk
+
+###
+# Login user by email and password
+
+POST http://localhost:3333/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "subscriber__14@mail.ru",
+  "password": "123456"
+}
+
+###
+# Login user by wrong password
+
+POST http://localhost:3333/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "1234@mail.ru",
+  "password": "1234567"
+}
+
+###
+# Login unexisting user
+
+POST http://localhost:3333/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "12344444@mail.ru",
+  "password": "1234567"
+}
+
+###
+# Get new access token
+
+POST http://localhost:3333/api/auth/refresh HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJyZWZyZXNoVG9rZW5JZCI6ImRkZTNiMmI5LThjZmYtNGI0OS1iY2Y4LTdmYTQ4ZWVlYjEzNiIsImlhdCI6MTY3NDMxNTY2MSwiZXhwIjoxNjc2OTA3NjYxfQ.9IZegG06ERoWR7VuiRxNhUA5W4Rdd_p1Ooo2bMZ_1ns
+
+###
+
+# Create a new user without  subsription for news
+
+PATCH http://localhost:3333/api/auth/update/63c51c8a0dd315a80bded7b5 HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "subscriber2@local.test",
+  "birthDate": "2022-11-03",
+  "firstname": "Petr",
+  "lastname": "Sidorov",
+  "password": "123456",
+  "isSubscribed": true
+}
+###
