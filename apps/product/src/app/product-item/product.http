@@ -1,0 +1,154 @@
+## Create post
+
+POST http://localhost:3333/api/product HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMTY2NjEsImV4cCI6MTY3NDMxNzI2MX0.1K406XmcaEAEg-xcyjBfIyK_whNkOL4n40llGX-V-MQ
+Content-Type: application/json
+
+{
+  "userId": "63cbce61917ffba16413e6bc",
+  "isDraft": true,
+  "tagsList": ["Life", "Video", "List"],
+  "postContent": {
+    "postCategory": "Text",
+    "postTitle": "someti234tle",
+    "previewText": "somepreviewtext",
+    "postText": "sometext"
+ }
+}
+
+###
+##Show all  posts
+GET http://localhost:3333/api/product HTTP/1.1
+Content-Type: application/json
+
+
+###
+##Show one post
+
+GET http://localhost:3333/api/post/2 HTTP/1.1
+
+###
+##Show posts of type Text
+
+GET http://localhost:3335/api/post?postCategory=Text HTTP/1.1
+
+###
+##Show posts with tag "someTag4"
+
+GET http://localhost:3335/api/post?tag=someTag4 HTTP/1.1
+
+###
+##Show posts of user2
+
+GET http://localhost:3335/api/post?userId=user2 HTTP/1.1
+
+###
+##Show posts with limit - 2 posts only
+
+GET http://localhost:3335/api/post?limit=2 HTTP/1.1
+
+###
+##Show posts with limit - 2 posts only and from old to new (opposite  sort direction)
+
+GET http://localhost:3335/api/post?limit=2&sortDirection=asc HTTP/1.1
+
+###
+##Show posts sorted by comments quantity
+
+GET http://localhost:3335/api/post?sortBy=comments HTTP/1.1
+
+###
+##Show posts from page 2 when limit is 2
+
+GET http://localhost:3335/api/post?limit=2&page=1 HTTP/1.1
+
+
+### Delete post
+
+DELETE http://localhost:3335/api/post/24 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMDQ1NzUsImV4cCI6MTY3NDMwNTE3NX0.QFGHsFIuamvhDVFOmGBUUjFJ7-R-rQTn0SVpSKSEJJE
+
+### Update post
+PATCH http://localhost:3335/api/post/23 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMTI2MjQsImV4cCI6MTY3NDMxMzIyNH0.av-Jr9PD91UdVpdo9b_dMmuBx1yaGj4ZksRP1zHJakI
+Content-Type: application/json
+
+{
+  "userId": "63cbce61917ffba16413e6bc",
+  "postCategory": "Text",
+  "isDraft": false,
+  "tagsList": ["fun", "video"],
+  "postContent": {
+    "postCategory": "Text",
+    "postTitle": "tetqttitle",
+    "previewText": "so5y31y13yme preview text",
+    "postText": "sy5y54y514yme text"
+  }
+}
+
+### Лайк
+PATCH http://localhost:3335/api/post/2/like HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "63bb3874f07b8f46c16d5689"
+}
+
+
+### Репост публикации
+POST http://localhost:3335/api/post/3/repost HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "6384f0dca6f361cbc1b80878"
+}
+
+###
+# Send new posts on mail
+GET http://localhost:3335/api/post/notify/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "test2@gmail.com"
+}
+
+
+###___________COMMENTS
+
+### Create comment
+
+POST http://localhost:3335/api/comment HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMTU2NjEsImV4cCI6MTY3NDMxNjI2MX0.MMCqmJn3mfbzUuJ05qi0kCaOIPk5rJV6aTgkgQ29Y7U
+
+{
+  "commentText": "empt5y comment",
+  "postId": 6,
+  "userId": "63cbce61917ffba16413e6bc"
+}
+
+### Get exact comment by commentId
+GET http://localhost:3335/api/comment/comments/10 HTTP/1.1
+
+### Get comments to some post
+GET http://localhost:3335/api/comment/3 HTTP/1.1
+
+### Delete comment
+DELETE http://localhost:3335/api/comment/comments/26 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMTQ2NjEsImV4cCI6MTY3NDMxNTI2MX0.AvUnAli8_n7-ODxJvvWHRrEJlPFgsKNOPnRLsmMn-wM
+
+### Update comment
+PATCH http://localhost:3335/api/comment/comments/27 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2NiY2U2MTkxN2ZmYmExNjQxM2U2YmMiLCJlbWFpbCI6InN1YnNjcmliZXJfXzE0QG1haWwucnUiLCJyb2xlIjoidXNlciIsImxhc3RuYW1lIjoiU2lkb3JvdiIsImZpcnN0bmFtZSI6IlBldHIiLCJpYXQiOjE2NzQzMTU2NjEsImV4cCI6MTY3NDMxNjI2MX0.MMCqmJn3mfbzUuJ05qi0kCaOIPk5rJV6aTgkgQ29Y7U
+
+{
+  "commentText": "user user ",
+  "postId": 3,
+  "userId": "63cbce61917ffba16413e6bc"
+}
+
+
+
+
+

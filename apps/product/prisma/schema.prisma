@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum GuitarType {
+  Acoustic
+  Electric
+  Ukulele
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  pros        String
+  cons        String
+  commentText String
+  userId      String
+}
+
+model Product {
+  id            Int        @id @default(autoincrement())
+  productType   String
+  lastEditTime  DateTime   @default(now())
+  guitarType    GuitarType
+  photo         String
+  chordQty      Int
+  price         Int
+  rating        Int
+  title         String
+  description   String
+  createdAt     DateTime   @default(now())
+  userId        String
+  commentsCount Int        @default(0)
+  sku           String
+  comments      Comment[]
+}

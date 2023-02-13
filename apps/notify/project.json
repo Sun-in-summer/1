@@ -1,7 +1,7 @@
 {
-  "name": "users",
+  "name": "notify",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/users/src",
+  "sourceRoot": "apps/notify/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,11 +10,10 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/users",
-        "main": "apps/users/src/main.ts",
-        "tsConfig": "apps/users/tsconfig.app.json",
-        "assets": ["apps/users/src/assets"],
-        "generatePackageJson": true
+        "outputPath": "dist/apps/notify",
+        "main": "apps/notify/src/main.ts",
+        "tsConfig": "apps/notify/tsconfig.app.json",
+        "assets": ["apps/notify/src/assets"]
       },
       "configurations": {
         "production": {
@@ -23,8 +22,8 @@
           "inspect": false,
           "fileReplacements": [
             {
-              "replace": "apps/users/src/environments/environment.ts",
-              "with": "apps/users/src/environments/environment.prod.ts"
+              "replace": "apps/notify/src/environments/environment.ts",
+              "with": "apps/notify/src/environments/environment.prod.ts"
             }
           ]
         }
@@ -33,11 +32,11 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "users:build"
+        "buildTarget": "notify:build"
       },
       "configurations": {
         "production": {
-          "buildTarget": "users:build:production"
+          "buildTarget": "notify:build:production"
         }
       }
     },
@@ -45,30 +44,15 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/users/**/*.ts"]
+        "lintFilePatterns": ["apps/notify/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/users/jest.config.ts",
+        "jestConfig": "apps/notify/jest.config.ts",
         "passWithNoTests": true
-      },
-      "deploy": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "nx run users:build",
-          "docker build -f ./apps/users/dockerfile . -t guitar.users --no-cache --force-rm"
-        ]
-      }
-    },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
       }
     }
   },

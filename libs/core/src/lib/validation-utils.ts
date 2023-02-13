@@ -1,9 +1,9 @@
 import { UnauthorizedException } from '@nestjs/common';
-import { Post } from '@guitar/shared-types';
+import { Product } from '@guitar/shared-types';
 
-export const validatePostUserId = (post: Post, user ) => {
+export const validateProductUserId = (product: Product, user ) => {
 
-  if (post.userId !== user.sub) {
+  if (product.userId !== user.sub) {
     throw new UnauthorizedException()
   }
 }

@@ -1,5 +1,5 @@
 export enum CommandEvent {
   AddSubscriber = 'addSubscriber',
-  AddPosts = 'addPosts',
+  AddProducts = 'addPosts',
   DeleteSubscriber = 'deleteSubscriber'
 }
